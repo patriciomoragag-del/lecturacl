@@ -74,7 +74,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
+
       <footer className="text-center text-gray-400 text-sm py-8">
         © 2026 LecturaCL · Hecho en Chile 🇨🇱
       </footer>
