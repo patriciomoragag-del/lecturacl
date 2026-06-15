@@ -11,7 +11,7 @@ export default function Home() {
         </a>
       </header>
 
-      <section className="bg-blue-600 text-white text-center py-16 px-6">
+      <<section className="bg-blue-600 text-white text-center py-16 px-6">
         <h2 className="text-3xl font-bold mb-4">Libros escolares + exámenes de comprensión</h2>
         <p className="text-blue-100 text-lg mb-8 max-w-xl mx-auto">
           La plataforma de lectura para estudiantes chilenos. Descarga libros en PDF y practica con exámenes generados por IA.
