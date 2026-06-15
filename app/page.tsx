@@ -7,10 +7,9 @@ export default function Home() {
           <span className="text-2xl">📚</span>
           <h1 className="text-xl font-bold">LecturaCL</h1>
         </div>
-        <button className="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold text-sm">
-          Ingresar
-        </button>
-      </header>
+        <button className=<a href="/auth" className="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold text-sm">
+  Ingresar
+</a>
 
       {/* Hero */}
       <section className="bg-blue-600 text-white text-center py-16 px-6">
