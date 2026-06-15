@@ -7,11 +7,12 @@ export default function Home() {
           <span className="text-2xl">📚</span>
           <h1 className="text-xl font-bold">LecturaCL</h1>
         </div>
-        <button className=<a href="/auth" className="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold text-sm">
-  Ingresar
-</a>
+        <button className="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold text-sm">
+          Ingresar
+        </button>
+      </header>
 
-
+      {/* Hero */}
       <section className="bg-blue-600 text-white text-center py-16 px-6">
         <h2 className="text-3xl font-bold mb-4">
           Libros escolares + exámenes de comprensión
@@ -74,7 +75,7 @@ export default function Home() {
         </div>
       </section>
 
-
+      {/* Footer */}
       <footer className="text-center text-gray-400 text-sm py-8">
         © 2026 LecturaCL · Hecho en Chile 🇨🇱
       </footer>
