@@ -11,7 +11,7 @@ export default function Home() {
   Ingresar
 </a>
 
-      {/* Hero */}
+
       <section className="bg-blue-600 text-white text-center py-16 px-6">
         <h2 className="text-3xl font-bold mb-4">
           Libros escolares + exámenes de comprensión
