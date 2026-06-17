@@ -3,7 +3,6 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <header className="bg-blue-600 text-white py-4 px-6 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-2xl">📚</span>
           <h1 className="text-xl font-bold">LecturaCL</h1>
         </div>
         <a href="/auth" className="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold text-sm">
