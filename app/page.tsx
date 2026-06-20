@@ -1,9 +1,15 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
   const [busqueda, setBusqueda] = useState('')
+  const router = useRouter()
+
+  const buscar = () => {
+    router.push('/libros?q=' + busqueda)
+  }
 
   return (
     <main className="min-h-screen bg-white">
@@ -21,15 +27,16 @@ export default function Home() {
             type="text"
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && buscar()}
             placeholder="Busca por titulo, autor o curso..."
             className="flex-1 px-4 py-3 rounded-lg text-gray-800 text-lg focus:outline-none"
           />
-          
-            href={`/libros?q=${busqueda}`}
+          <button
+            onClick={buscar}
             className="bg-yellow-400 text-blue-900 px-6 py-3 rounded-lg font-bold text-lg"
           >
             Buscar
-          </a>
+          </button>
         </div>
       </section>
       <footer className="text-center text-gray-400 text-sm py-8">2026 LecturaCL - Hecho en Chile</footer>
