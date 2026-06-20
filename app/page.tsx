@@ -1,33 +1,38 @@
+'use client'
+
+import { useState } from 'react'
+
 export default function Home() {
+  const [busqueda, setBusqueda] = useState('')
+
   return (
     <main className="min-h-screen bg-white">
       <header className="bg-blue-600 text-white py-4 px-6 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <h1 className="text-xl font-bold">LecturaCL</h1>
-        </div>
+        <h1 className="text-xl font-bold">LecturaCL</h1>
         <a href="/auth" className="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold text-sm">
           Ingresar
         </a>
       </header>
       <section className="bg-blue-600 text-white text-center py-16 px-6">
-        <h2 className="text-3xl font-bold mb-4">Libros escolares</h2>
-        <a href="/libros" className="bg-yellow-400 text-blue-900 px-8 py-3 rounded-full font-bold text-lg inline-block">
-          Explorar libros gratis
-        </a>
-      </section>
-      <section className="py-12 px-6 max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <a href="/libros" className="border-2 border-blue-200 rounded-xl p-6 text-center block">
-            <h4 className="font-bold">Parvularia</h4>
-          </a>
-          <a href="/libros" className="border-2 border-green-200 rounded-xl p-6 text-center block">
-            <h4 className="font-bold">Basica</h4>
-          </a>
-          <a href="/libros" className="border-2 border-purple-200 rounded-xl p-6 text-center block">
-            <h4 className="font-bold">Media</h4>
+        <h2 className="text-3xl font-bold mb-2">Encuentra tu libro escolar</h2>
+        <p className="text-blue-100 mb-8">Descarga gratis cualquier libro del colegio</p>
+        <div className="max-w-xl mx-auto flex gap-2">
+          <input
+            type="text"
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+            placeholder="Busca por titulo, autor o curso..."
+            className="flex-1 px-4 py-3 rounded-lg text-gray-800 text-lg focus:outline-none"
+          />
+          
+            href={`/libros?q=${busqueda}`}
+            className="bg-yellow-400 text-blue-900 px-6 py-3 rounded-lg font-bold text-lg"
+          >
+            Buscar
           </a>
         </div>
       </section>
+      <footer className="text-center text-gray-400 text-sm py-8">2026 LecturaCL - Hecho en Chile</footer>
     </main>
   )
 }
