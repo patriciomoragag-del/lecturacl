@@ -1,80 +1,52 @@
 'use client'
 
 import { useState } from 'react'
-import { supabase } from '../supabase'
+import { useRouter } from 'next/navigation'
 
-export default function AuthPage() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isLogin, setIsLogin] = useState(true)
-  const [mensaje, setMensaje] = useState('')
-  const [cargando, setCargando] = useState(false)
+export default function Home() {
+  const [busqueda, setBusqueda] = useState('')
+  const router = useRouter()
 
-  const handleAuth = async () => {
-    setCargando(true)
-    setMensaje('')
-    if (isLogin) {
-      const { error } = await supabase.auth.signInWithPassword({ email, password })
-      if (error) setMensaje('Error: ' + error.message)
-      else window.location.href = '/libros'
-    } else {
-      const { error } = await supabase.auth.signUp({ email, password })
-      if (error) setMensaje('Error: ' + error.message)
-      else setMensaje('Cuenta creada! Revisa tu email para confirmar.')
-    }
-    setCargando(false)
+  const buscar = () => {
+    router.push('/libros?q=' + busqueda)
   }
 
   return (
-    <main className="min-h-screen bg-blue-600 flex items-center justify-center px-4">
-      <div className="bg-white rounded-2xl p-8 w-full max-w-md shadow-xl">
-        <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-800">LecturaCL</h1>
-          <p className="text-gray-500 text-sm mt-1">
-            {isLogin ? 'Inicia sesion en tu cuenta' : 'Crea tu cuenta gratis'}
-          </p>
-        </div>
-        <div className="space-y-4">
-          <div>
-            <label className="text-sm font-medium text-gray-700">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="tu@email.com"
-              className="w-full mt-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label className="text-sm font-medium text-gray-700">Contrasena</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Minimo 6 caracteres"
-              className="w-full mt-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          {mensaje && (
-            <div className={`p-3 rounded-lg text-sm ${mensaje.includes('Error') ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600'}`}>
-              {mensaje}
-            </div>
-          )}
+    <main className="min-h-screen bg-white">
+      <header className="bg-blue-600 text-white py-4 px-6 flex items-center justify-between">
+        <h1 className="text-xl font-bold">LecturaCL</h1>
+        <a href="/auth" className="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold text-sm">
+          Subir un libro
+        </a>
+      </header>
+      <section className="bg-blue-600 text-white text-center py-16 px-6">
+        <h2 className="text-3xl font-bold mb-2">Encuentra tu libro escolar</h2>
+        <p className="text-blue-100 mb-8">Descarga gratis cualquier libro del colegio</p>
+        <div className="max-w-xl mx-auto flex gap-2">
+          <input
+            type="text"
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && buscar()}
+            placeholder="Busca por titulo, autor o curso..."
+            className="flex-1 px-4 py-3 rounded-lg text-gray-800 text-lg focus:outline-none"
+          />
           <button
-            onClick={handleAuth}
-            disabled={cargando}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50"
+            onClick={buscar}
+            className="bg-yellow-400 text-blue-900 px-6 py-3 rounded-lg font-bold text-lg"
           >
-            {cargando ? 'Cargando...' : isLogin ? 'Iniciar sesion' : 'Crear cuenta'}
-          </button>
-          <button
-            onClick={() => setIsLogin(!isLogin)}
-            className="w-full text-center text-sm text-blue-600 hover:underline"
-          >
-            {isLogin ? 'No tienes cuenta? Registrate gratis' : 'Ya tienes cuenta? Inicia sesion'}
+            Buscar
           </button>
         </div>
-      </div>
+      </section>
+      <section className="bg-white py-12 px-6 text-center">
+        <h3 className="text-xl font-bold text-gray-800 mb-2">Tienes un libro que no esta aqui?</h3>
+        <p className="text-gray-500 mb-6">Subelo y ayuda a otros estudiantes de Chile</p>
+        <a href="/auth" className="bg-blue-600 text-white px-8 py-3 rounded-full font-bold text-lg inline-block">
+          Subir un libro gratis
+        </a>
+      </section>
+      <footer className="text-center text-gray-400 text-sm py-8">2026 LecturaCL - Hecho en Chile</footer>
     </main>
   )
 }
